@@ -1,0 +1,116 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="app.js"></script>
+  <script type="module" src="main.js"></script>
+
+  <style>
+    .lang-javascript {
+      width: 60%;
+      padding-left: 15px;
+      font-family: monospace;
+    }
+
+    script.show-script {
+      display: block;
+      max-width: 720px;
+      background-color: floralwhite;
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
+      font-size: 12px;
+      margin-left: -40px;
+      white-space: pre;
+      margin-top: 2em;
+    }
+
+    code {
+      background-color: #eee;
+      padding: 2px 4px 2px 4px;
+    }
+  </style>
+
+  <style>
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+  }
+
+  .confirm-box {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    text-align: center;
+    background: white;
+  }
+
+  .close {
+    cursor: pointer;
+  }
+</style>
+
+  <style>
+  </style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay" hidden>
+    <input id="chooseFile" type="file" style="display: none" />
+    <div class="confirm-box">
+      <div  id="closeConfirmBox"  class="close">&#10006;</div>
+      <h3 id="isConfirmContent">Are you sure to execute this action?</h3>
+      <button id="isConfirmTrue">Yes</button>
+      <button id="isConfirmFalse">No</button>
+    </div>
+</div>
+  
+    <h1>mnist</h1>
+
+  <button id='downloadAndLoadFiles'  onclick="downloadAndLoadFiles()"> download </button>
+   
+  <form>
+    <div>
+      <label for="image_uploads">选择</label>
+      <input type="file" id="image_uploads" name="image_uploads" multiple>
+    </div>
+    <div class="preview">
+    </div>
+  </form>
+  <script>
+   // const input = document.querySelector('input');
+    
+    //input.style.opacity = 0;
+
+document.getElementById("image_uploads").addEventListener("change", chooseJs, false);
+
+    const jsUrls = ['./tfjs', './tfjs-vis', './data.js', './script.js'];
+
+const cssUrls = ['tufte.css'];
+
+function downloadAndLoadFiles(){
+    document.querySelector('#downloadAndLoadFiles').disabled = true;
+    loadFiles(jsUrls, '.js');
+    loadFiles(cssUrls, '.css');
+}
+
+  </script>
+  
+<button id='load-data'>Load Data</button>
+<button id='start-training-1' disabled>Start Training</button>
+
+<canvas width="300" height="300" style="border: 2px solid #666;"></canvas>
+<br>
+<button onclick="clearCanvas();" style="margin: 4px;">清除</button>
+<button onclick="window.predict();" style="margin: 4px;">预测</button>
+
+</body>
+
+</html>
